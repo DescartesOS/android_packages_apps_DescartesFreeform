@@ -15,7 +15,7 @@
 //
 
 filegroup {
-    name: "lmofreeform-display-adapter-java",
+    name: "descartesfreeform-display-adapter-java",
     srcs: [
         "java/com/android/server/display/LMOFreeformDisplayAdapter.java",
     ],
@@ -23,7 +23,7 @@ filegroup {
 }
 
 java_library_static {
-    name: "lmofreeform-server",
+    name: "descartesfreeform-server",
     libs: ["services.core"],
     srcs: [
         "java/com/libremobileos/**/*.java",

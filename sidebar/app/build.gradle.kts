@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.libremobileos.sidebar"
+    namespace = "com.descartes.sidebar"
     compileSdk = 34
 
     buildFeatures {
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.libremobileos.sidebar"
+        applicationId = "com.descartes.sidebar"
         minSdk = 34
         targetSdk = 34
         versionCode = 1

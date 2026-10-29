@@ -7,9 +7,9 @@ plugins {
 }
 
 android {
-    namespace = "com.libremobileos.freeform"
+    namespace = "com.descartes.freeform"
     defaultConfig {
-        applicationId = "com.libremobileos.freeform"
+        applicationId = "com.descartes.freeform"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

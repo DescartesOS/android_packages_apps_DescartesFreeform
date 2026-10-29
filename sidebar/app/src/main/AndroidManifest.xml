@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.libremobileos.sidebar"
+    package="com.descartes.sidebar"
     android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -17,14 +17,14 @@
     <uses-permission android:name="android.permission.MANAGE_GAME_MODE" />
 
     <application
-        android:name=".app.SidebarApplication"
+        android:name="com.libremobileos.sidebar.app.SidebarApplication"
         android:persistent="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.sidebar.SidebarSettingsActivity"
+            android:name="com.libremobileos.sidebar.ui.sidebar.SidebarSettingsActivity"
             android:exported="true"
             android:label="@string/sidebar_label"
             android:theme="@style/Theme.SpaLib">
@@ -43,25 +43,25 @@
         </activity>
 
         <activity
-            android:name=".ui.all_app.AllAppActivity"
+            android:name="com.libremobileos.sidebar.ui.all_app.AllAppActivity"
             android:exported="true"
             android:excludeFromRecents="true"/>
 
         <activity
-            android:name=".ui.sidebar.SidebarPerAppConfigActivity"
+            android:name="com.libremobileos.sidebar.ui.sidebar.SidebarPerAppConfigActivity"
             android:exported="false"
             android:theme="@style/Theme.SidebarPerAppConfig"/>
 
         <activity
-            android:name=".ui.sidebar.SidebarCustomizationActivity"
+            android:name="com.libremobileos.sidebar.ui.sidebar.SidebarCustomizationActivity"
             android:exported="false"
             android:theme="@style/Theme.SpaLib"/>
 
-        <service android:name=".service.SidebarService"/>
-        <service android:name=".service.SidebarMonitorService"/>
+        <service android:name="com.libremobileos.sidebar.service.SidebarService"/>
+        <service android:name="com.libremobileos.sidebar.service.SidebarMonitorService"/>
 
         <receiver
-            android:name=".receiver.BootReceiver"
+            android:name="com.libremobileos.sidebar.receiver.BootReceiver"
             android:exported="true" >
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -69,7 +69,7 @@
         </receiver>
 
         <receiver
-            android:name=".receiver.GameSpaceReceiver"
+            android:name="com.libremobileos.sidebar.receiver.GameSpaceReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="io.chaldeaprjkt.gamespace.action.GAME_START" />

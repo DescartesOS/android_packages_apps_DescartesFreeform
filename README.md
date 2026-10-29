@@ -1,6 +1,6 @@
-# LMOFreeform
+# Descartes Freeform
 
-Based on [Mi-Freeform](https://github.com/sunshine0523/Mi-FreeForm/).
+Descartes Freeform is based on the open source LMOFreeform project.
 
 ## License
 

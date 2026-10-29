@@ -92,7 +92,7 @@ class FreeformWindow(
 
     companion object {
         private const val TAG = "LMOFreeform/FreeformWindow"
-        private const val FREEFORM_PACKAGE = "com.libremobileos.freeform"
+        private const val FREEFORM_PACKAGE = "com.descartes.freeform"
         private const val FREEFORM_LAYOUT = "view_freeform"
         private const val WINDOW_DESTROY_WAIT_MS = 10000L
     }

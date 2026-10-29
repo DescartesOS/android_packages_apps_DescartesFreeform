@@ -1,12 +1,19 @@
 <resources>
-    <string name="app_name">Sidebar</string>
+    <string name="app_name">Descartes Freeform</string>
 
     <!--SettingsFragment-->
     <string name="enable_sideline">Use Sidebar</string>
-    <string name="sidebar_label">Sidebar</string>
+    <string name="sidebar_label">Freeform sidebar</string>
     <string name="sidebar_summary">Quickly open apps in a floating window</string>
     <string name="sidebar_app_setting_label">Pinned apps</string>
     <string name="sidebar_settings_description">Open sidebar settings</string>
+    <string name="sidebar_launch_mode">When tapping an app</string>
+    <string name="sidebar_launch_mode_freeform">Freeform window</string>
+    <string name="sidebar_launch_mode_fullscreen">Full screen</string>
+    <string name="sidebar_launch_mode_bubble">Bubble</string>
+    <string name="sidebar_launch_mode_freeform_summary">Open apps in a floating freeform window</string>
+    <string name="sidebar_launch_mode_fullscreen_summary">Open apps in the standard full screen</string>
+    <string name="sidebar_launch_mode_bubble_summary">Open apps in a compact floating window</string>
     <string name="sidebar_predicted_apps">Show app suggestions</string>
     <string name="sidebar_predicted_apps_summary">Show upto 6 suggested apps below pinned apps</string>
     <string name="sidebar_auto_enable_selected_apps">Auto enable sidebar for selected apps</string>

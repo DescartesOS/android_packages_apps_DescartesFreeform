@@ -2,6 +2,8 @@ package com.libremobileos.sidebar.service
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.ComponentName
+import android.content.pm.LauncherApps
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.PixelFormat
@@ -59,8 +61,8 @@ class SidebarView(
 
     companion object {
         private const val OFFSET_X = 90
-        private const val PACKAGE = "com.libremobileos.freeform"
-        private const val ACTION = "com.libremobileos.freeform.START_FREEFORM"
+        private const val PACKAGE = "com.descartes.freeform"
+        private const val ACTION = "com.descartes.freeform.START_FREEFORM"
         private const val TAG = "SidebarView"
     }
 
@@ -69,11 +71,24 @@ class SidebarView(
     }
 
     private fun launchAppInFreeform(appInfo: AppInfo) {
+        if (sharedPrefs.getInt("sidebar_launch_mode", 0) == 1) {
+            runCatching {
+                context.getSystemService(LauncherApps::class.java).startMainActivity(
+                    ComponentName(appInfo.packageName, appInfo.activityName),
+                    UserHandle.of(appInfo.userId),
+                    null,
+                    null
+                )
+            }.onFailure { logger.e("Failed to launch app full screen", it) }
+            removeView()
+            return
+        }
         val intent = Intent(ACTION).apply {
             setPackage(PACKAGE)
             putExtra("packageName", appInfo.packageName)
             putExtra("activityName", appInfo.activityName)
             putExtra("userId", appInfo.userId)
+            putExtra("compactWindow", sharedPrefs.getInt("sidebar_launch_mode", 0) == 2)
         }
         context.sendBroadcastAsUser(intent, UserHandle(UserHandle.USER_CURRENT))
         removeView()
@@ -92,10 +107,12 @@ class SidebarView(
         layoutParams.apply {
             type = LayoutParams.TYPE_APPLICATION_OVERLAY
             flags = LayoutParams.FLAG_LAYOUT_IN_SCREEN or
-                    LayoutParams.FLAG_HARDWARE_ACCELERATED
+                    LayoutParams.FLAG_HARDWARE_ACCELERATED or
+                    LayoutParams.FLAG_BLUR_BEHIND
             privateFlags = LayoutParams.PRIVATE_FLAG_TRUSTED_OVERLAY or
                     LayoutParams.PRIVATE_FLAG_SYSTEM_APPLICATION_OVERLAY
             format = PixelFormat.RGBA_8888
+            setBlurBehindRadius((28 * context.resources.displayMetrics.density).roundToInt())
             windowAnimations = android.R.style.Animation_Dialog
             layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
         }

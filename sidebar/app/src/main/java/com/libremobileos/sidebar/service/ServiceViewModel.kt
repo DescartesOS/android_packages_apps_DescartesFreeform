@@ -22,7 +22,7 @@ import android.os.UserManager
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.libremobileos.sidebar.R
+import com.descartes.sidebar.R
 import com.libremobileos.sidebar.app.SidebarApplication
 import com.libremobileos.sidebar.bean.AppInfo
 import com.libremobileos.sidebar.room.DatabaseRepository
@@ -201,7 +201,7 @@ class ServiceViewModel(private val application: Application): AndroidViewModel(a
     }
 
     companion object {
-        private const val ALL_APP_PACKAGE = "com.libremobileos.sidebar"
+        private const val ALL_APP_PACKAGE = "com.descartes.sidebar"
         private const val ALL_APP_ACTIVITY = "com.libremobileos.sidebar.ui.all_app.AllAppActivity"
         private const val MAX_PREDICTED_APPS = 6
         const val KEY_SHOW_PREDICTED_APPS = "sidebar_show_predicted_apps"

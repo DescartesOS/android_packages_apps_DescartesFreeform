@@ -22,7 +22,7 @@ import android.view.WindowManager.LayoutParams
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.android.internal.policy.SystemBarUtils
-import com.libremobileos.sidebar.R
+import com.descartes.sidebar.R
 import com.libremobileos.sidebar.app.SidebarApplication
 import com.libremobileos.sidebar.utils.Logger
 

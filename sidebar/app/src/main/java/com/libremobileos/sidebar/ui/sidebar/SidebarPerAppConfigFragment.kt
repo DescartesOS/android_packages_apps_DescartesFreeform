@@ -38,7 +38,7 @@ import com.android.settingslib.spa.widget.preference.SwitchPreference
 import com.android.settingslib.spa.widget.preference.SwitchPreferenceModel
 import com.android.settingslib.spa.widget.scaffold.SettingsScaffold
 import com.android.settingslib.spa.widget.ui.Category
-import com.libremobileos.sidebar.R
+import com.descartes.sidebar.R
 import com.libremobileos.sidebar.app.SidebarApplication
 import com.libremobileos.sidebar.ui.theme.SidebarTheme
 import com.android.settingslib.spa.framework.compose.LocalNavController

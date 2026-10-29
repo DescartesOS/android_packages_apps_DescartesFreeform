@@ -15,7 +15,7 @@
 //
 
 android_app {
-    name: "LMOFreeform",
+    name: "DescartesFreeform",
     srcs: [
         "java/**/*.kt",
     ],
@@ -28,12 +28,12 @@ android_app {
         "androidx-constraintlayout_constraintlayout",
         "androidx.cardview_cardview",
     ],
-    required: ["privapp_allowlist_com.libremobileos.freeform"],
+    required: ["privapp_allowlist_com.descartes.freeform"],
 }
 
 prebuilt_etc {
-    name: "privapp_allowlist_com.libremobileos.freeform",
-    src: "privapp_allowlist_com.libremobileos.freeform.xml",
+    name: "privapp_allowlist_com.descartes.freeform",
+    src: "privapp_allowlist_com.descartes.freeform.xml",
     system_ext_specific: true,
     sub_dir: "permissions",
     filename_from_src: true,

@@ -15,7 +15,7 @@
 //
 
 filegroup {
-    name: "lmofreeform_aidl",
+    name: "descartesfreeform_aidl",
     srcs: ["aidl/**/*.aidl"],
     path: "aidl",
 }

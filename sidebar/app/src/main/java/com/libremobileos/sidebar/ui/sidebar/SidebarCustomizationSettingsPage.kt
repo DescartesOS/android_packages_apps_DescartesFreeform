@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.android.settingslib.spa.framework.compose.LocalNavController
 import com.android.settingslib.spa.framework.compose.NavControllerWrapper
 import com.android.settingslib.spa.widget.scaffold.SettingsScaffold
-import com.libremobileos.sidebar.R
+import com.descartes.sidebar.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

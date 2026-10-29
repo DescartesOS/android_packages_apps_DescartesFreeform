@@ -14,12 +14,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Alignment
 import com.android.settingslib.spa.framework.compose.rememberDrawablePainter
 import com.android.settingslib.spa.framework.theme.SettingsDimension
 import com.android.settingslib.spa.widget.preference.MainSwitchPreference
@@ -29,7 +33,7 @@ import com.android.settingslib.spa.widget.preference.SwitchPreference
 import com.android.settingslib.spa.widget.preference.SwitchPreferenceModel
 import com.android.settingslib.spa.widget.scaffold.SettingsScaffold
 import com.android.settingslib.spa.widget.ui.Category
-import com.libremobileos.sidebar.R
+import com.descartes.sidebar.R
 import com.libremobileos.sidebar.bean.SidebarAppInfo
 import com.libremobileos.sidebar.service.SidebarMonitorService
 
@@ -39,6 +43,9 @@ fun SidebarSettingsPage(
 ) {
     val context = LocalContext.current
     var mainChecked = rememberSaveable { mutableStateOf(viewModel.getSidebarEnabled()) }
+    var showLaunchModeDialog by rememberSaveable { mutableStateOf(false) }
+    val launchPreferences = remember { context.getSharedPreferences(com.libremobileos.sidebar.app.SidebarApplication.CONFIG, Context.MODE_PRIVATE) }
+    var launchMode by rememberSaveable { mutableStateOf(launchPreferences.getInt("sidebar_launch_mode", 0)) }
 
     SettingsScaffold(
         title = stringResource(R.string.sidebar_label),
@@ -118,9 +125,70 @@ fun SidebarSettingsPage(
             }
             
             if (mainChecked.value) {
+                val launchSummary = stringResource(
+                    when (launchMode) {
+                        1 -> R.string.sidebar_launch_mode_fullscreen_summary
+                        2 -> R.string.sidebar_launch_mode_bubble_summary
+                        else -> R.string.sidebar_launch_mode_freeform_summary
+                    }
+                )
+                Preference(
+                    model = object : PreferenceModel {
+                        override val title = stringResource(R.string.sidebar_launch_mode)
+                        override val summary = { launchSummary }
+                        override val onClick = { showLaunchModeDialog = true }
+                    }
+                )
                 SidebarAppList(viewModel)
             }
         }
+    }
+
+    if (showLaunchModeDialog) {
+        val options = listOf(
+            R.string.sidebar_launch_mode_freeform,
+            R.string.sidebar_launch_mode_fullscreen,
+            R.string.sidebar_launch_mode_bubble
+        )
+        AlertDialog(
+            onDismissRequest = { showLaunchModeDialog = false },
+            title = { Text(stringResource(R.string.sidebar_launch_mode)) },
+            text = {
+                Column {
+                    options.forEachIndexed { index, label ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    launchMode = index
+                                    launchPreferences.edit()
+                                        .putInt("sidebar_launch_mode", index)
+                                        .apply()
+                                    showLaunchModeDialog = false
+                                }
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = launchMode == index,
+                                onClick = {
+                                    launchMode = index
+                                    launchPreferences.edit()
+                                        .putInt("sidebar_launch_mode", index)
+                                        .apply()
+                                    showLaunchModeDialog = false
+                                }
+                            )
+                            Text(
+                                text = stringResource(label),
+                                modifier = Modifier.padding(start = 12.dp)
+                            )
+                        }
+                    }
+                }
+            },
+            confirmButton = {}
+        )
     }
 }
 
